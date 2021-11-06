@@ -1,5 +1,12 @@
 # IDE
 .idea
 
-# ENV
+# Virtual env
 env
+
+# OS Environment Variables
+.env
+.env-*
+
+# Python
+.pytest_cache
