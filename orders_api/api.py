@@ -5,7 +5,7 @@ from uuid import UUID
 from fastapi import FastAPI, Depends, Request
 from fastapi.responses import JSONResponse
 
-from exceptions.order_exception import OrderNotFoundError
+from exceptions.custom_exceptions import OrderNotFoundError, CommunicationFailedError
 from schemas.item import Item
 
 app = FastAPI()
@@ -14,6 +14,11 @@ app = FastAPI()
 @app.exception_handler(OrderNotFoundError)
 def handle_order_not_found_error(request: Request, exc: OrderNotFoundError):
     return JSONResponse(status_code=HTTPStatus.NOT_FOUND, content={"message": "Order not found"})
+
+
+@app.exception_handler(CommunicationFailedError)
+def handle_communication_error(request: Request, exc: CommunicationFailedError):
+    return JSONResponse(status_code=HTTPStatus.BAD_GATEWAY, content={"message": "Service communication failed"})
 
 
 @app.get('/health')

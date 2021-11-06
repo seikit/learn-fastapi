@@ -5,7 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 from http import HTTPStatus
 
-from exceptions.order_exception import OrderNotFoundError
+from exceptions.custom_exceptions import OrderNotFoundError, CommunicationFailedError
 from orders_api.api import app, get_order_items
 from schemas.item import Item
 
@@ -67,3 +67,8 @@ class TestReadOrders:
         overrides_get_order_items(items)
         response = client.get('/orders/7e290683-d67b-4f96-a940-44bef1f69d21/items')
         assert response.json() == items
+
+    def test_communication_failed_error(self, client, overrides_get_order_items):
+        overrides_get_order_items(CommunicationFailedError())
+        response = client.get('/orders/ea78b59b-885d-4e7b-9cd0-d54acadb4933/items')
+        assert response.status_code == HTTPStatus.BAD_GATEWAY
