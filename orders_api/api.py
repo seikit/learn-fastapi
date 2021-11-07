@@ -1,6 +1,5 @@
 from http import HTTPStatus
 from typing import List
-from uuid import UUID
 
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -9,6 +8,7 @@ from exceptions.custom_exceptions import (
     CommunicationFailedError,
     OrderNotFoundError,
 )
+from external_api.ext_api import get_order_items
 from schemas.error import ErrorResponse
 from schemas.health import HealthCheck
 from schemas.item import Item
@@ -43,10 +43,6 @@ def handle_communication_error(
 )
 async def health_check():
     return HealthCheck(status="ok")
-
-
-def get_order_items(uuid: UUID) -> List[Item]:
-    pass
 
 
 @app.get(
