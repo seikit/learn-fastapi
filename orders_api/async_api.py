@@ -68,5 +68,6 @@ async def health_check():
 async def read_items(items: List[Item] = Depends(get_order_items)):
     return items
 
-if __name__ == '__main__':
-    uvicorn.run('orders_api.async_api:app', port='8000', host='0.0.0.0')
+
+if __name__ == "__main__":
+    uvicorn.run("orders_api.async_api:app", port="8000", host="0.0.0.0")
