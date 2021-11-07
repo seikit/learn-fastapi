@@ -1,11 +1,14 @@
+from http import HTTPStatus
 from typing import List
 from uuid import UUID
 
 import pytest
 from fastapi.testclient import TestClient
-from http import HTTPStatus
 
-from exceptions.custom_exceptions import OrderNotFoundError, CommunicationFailedError
+from exceptions.custom_exceptions import (
+    CommunicationFailedError,
+    OrderNotFoundError,
+)
 from orders_api.api import app, get_order_items
 from schemas.item import Item
 

@@ -4,8 +4,11 @@ from uuid import UUID
 
 import httpx
 
-from config.settings import SERVICE_URL, APIKEY, TENANT_ID
-from exceptions.custom_exceptions import OrderNotFoundError, CommunicationFailedError
+from config.settings import APIKEY, SERVICE_URL, TENANT_ID
+from exceptions.custom_exceptions import (
+    CommunicationFailedError,
+    OrderNotFoundError,
+)
 from schemas.item import Item
 
 

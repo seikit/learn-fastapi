@@ -2,10 +2,13 @@ from http import HTTPStatus
 from typing import List
 from uuid import UUID
 
-from fastapi import FastAPI, Depends, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from exceptions.custom_exceptions import OrderNotFoundError, CommunicationFailedError
+from exceptions.custom_exceptions import (
+    CommunicationFailedError,
+    OrderNotFoundError,
+)
 from schemas.error import ErrorResponse
 from schemas.health import HealthCheck
 from schemas.item import Item
