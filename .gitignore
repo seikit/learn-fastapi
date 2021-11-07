@@ -3,6 +3,7 @@
 
 # Virtual env
 env
+venv
 
 # OS Environment Variables
 .env
